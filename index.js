@@ -78,6 +78,20 @@ app.post("/register", (req, res) => {
 app.get("/",(req,res)=>{
   res.send("Hello");
 })
+// Rota para listar todos os usuários
+app.get("/users", async (req, res) => {
+  try {
+    const db = client.db("lendasamazonia");
+    const collection = db.collection("usuario");
+
+    const users = await collection.find({}).toArray();
+
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao listar os usuários", details: error.message });
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Rodando na porta ${port}`);
