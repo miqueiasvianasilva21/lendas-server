@@ -32,11 +32,11 @@ run().catch(console.dir);
 
 app.post("/adduser", async (req, res) => {
   try {
-    const { nome, idade } = req.body;
+    const { nome, email, senha } = req.body;
     const db = client.db("lendasamazonia");
     const collection = db.collection("usuario");
 
-    const result = await collection.insertOne({ nome, idade });
+    const result = await collection.insertOne({ nome, email, senha });
 
     res.json({ message: "Usuário adicionado com sucesso", insertedId: result.insertedId });
   } catch (error) {
