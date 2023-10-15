@@ -1,9 +1,10 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://miqueias:vGJM16oMa7l58StH@lendasamazonia.0xlsvsc.mongodb.net/lendasamazonia?retryWrites=true&w=majority";
+require('dotenv').config();
+const uri = process.env.MONGODB_CONNECT_URI;
 const express = require("express");
 const app = express();
 const cors = require('cors')
-require('dotenv').config();
+
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
